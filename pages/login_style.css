@@ -1,0 +1,242 @@
+/* 登录和注册页面专用样式 */
+
+/* 卡片容器 */
+.auth-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 450px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.auth-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* 页面标题 */
+.auth-title {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.auth-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #3498db, #2980b9);
+    border-radius: 3px;
+}
+
+/* 表单样式 */
+.auth-form {
+    margin-top: 20px;
+}
+
+/* 输入框标签 */
+.auth-form label {
+    font-weight: 500;
+    color: #34495e;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* 输入框容器 */
+.auth-input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* 输入框图标 */
+.auth-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #95a5a6;
+    font-size: 16px;
+}
+
+/* 输入框样式 */
+.auth-form .stTextInput>div>div>input {
+    border-radius: 8px !important;
+    border: 1px solid #e0e0e0 !important;
+    padding: 12px 15px 12px 40px !important; /* 为图标留出空间 */
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+    background-color: #f8f9fa !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.auth-form .stTextInput>div>div>input:focus {
+    border-color: #3498db !important;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25) !important;
+    background-color: white !important;
+}
+
+/* 按钮样式 */
+.auth-form .stButton>button {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    background: linear-gradient(to right, #3498db, #2980b9) !important;
+    border-radius: 8px !important;
+    margin-top: 10px !important;
+    transition: all 0.3s ease !important;
+}
+
+.auth-form .stButton>button:hover {
+    background: linear-gradient(to right, #2980b9, #1a5276) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2) !important;
+}
+
+.auth-form .stButton>button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 分隔线 */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.auth-divider:before,
+.auth-divider:after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.auth-divider:before {
+    margin-right: 10px;
+}
+
+.auth-divider:after {
+    margin-left: 10px;
+}
+
+/* 辅助链接 */
+.auth-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.auth-links a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* 错误和成功消息 */
+.auth-message {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.auth-message.error {
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #b91c1c;
+}
+
+.auth-message.success {
+    background-color: #dcfce7;
+    border-left: 4px solid #22c55e;
+    color: #15803d;
+}
+
+.auth-message.info {
+    background-color: #e0f2fe;
+    border-left: 4px solid #3b82f6;
+    color: #1d4ed8;
+}
+
+/* 验证码输入框样式 */
+.verification-code-input {
+    letter-spacing: 8px;
+    font-size: 20px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 20px;
+        margin: 0 15px;
+    }
+    
+    .auth-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 表单字段动画 */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.auth-input-container {
+    animation: slideIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+.auth-input-container:nth-child(1) { animation-delay: 0.1s; }
+.auth-input-container:nth-child(2) { animation-delay: 0.2s; }
+.auth-input-container:nth-child(3) { animation-delay: 0.3s; }
+.auth-input-container:nth-child(4) { animation-delay: 0.4s; }
+
+/* 按钮脉冲效果 */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+}
+
+.auth-form .stButton>button:focus {
+    animation: pulse 1.5s infinite;
+}

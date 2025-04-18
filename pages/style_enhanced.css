@@ -1,0 +1,185 @@
+/* 增强型RAG文档检索系统 - 增强样式表 */
+
+/* 全局样式和动画定义 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* 页面加载动画 */
+.stApp {
+    animation: fadeIn 0.8s ease-out;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+}
+
+/* 主标题动画效果 */
+.main-title {
+    color: #1e293b;
+    font-weight: 700;
+    margin: 20px 0;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.1), rgba(56, 189, 248, 0.05));
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    letter-spacing: 0.5px;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 文件上传区域动画 */
+.upload-area {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #38bdf8;
+    background-color: rgba(56, 189, 248, 0.05);
+    transform: translateY(-2px);
+}
+
+.upload-area.drag-over {
+    border-color: #38bdf8;
+    background-color: rgba(56, 189, 248, 0.1);
+    transform: scale(1.02);
+}
+
+/* 加载状态动画 */
+.loading-indicator {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* 聊天消息动画 */
+.stChatMessage {
+    animation: slideIn 0.3s ease-out;
+    margin-bottom: 20px !important;
+    padding: 15px !important;
+    border-radius: 16px !important;
+    max-width: 85% !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stChatMessage:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 按钮悬停效果 */
+button, .stButton>button, .stDownloadButton>button {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2) !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    font-size: 0.9em !important;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover, .stButton>button:hover, .stDownloadButton>button:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%) !important;
+    box-shadow: 0 15px 20px -5px rgba(56, 189, 248, 0.3) !important;
+    transform: translateY(-3px) !important;
+}
+
+button:active, .stButton>button:active, .stDownloadButton>button:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 5px 10px -3px rgba(56, 189, 248, 0.2) !important;
+}
+
+/* 搜索结果动画 */
+.search-result {
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+.search-result:hover {
+    transform: translateX(5px);
+    background-color: rgba(56, 189, 248, 0.05);
+}
+
+/* 错误消息动画 */
+.stAlert {
+    animation: slideIn 0.3s ease-out;
+    transition: all 0.3s ease;
+}
+
+/* 输入框焦点效果 */
+.stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15) !important;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

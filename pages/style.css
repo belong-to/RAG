@@ -1,0 +1,342 @@
+/* 全局样式 */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: #ffffff;
+    color: #4a5568;
+}
+
+/* 页面背景渐变 */
+.stApp {
+    background: linear-gradient(135deg, #f9fafc 0%, #f0f5fa 100%);
+    min-height: 100vh;
+}
+
+/* 标题样式 */
+h1 {
+    color: #2d3748;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 18px;
+    border-bottom: 2px solid #7eb6e3;
+    background: linear-gradient(to right, rgba(126, 182, 227, 0), rgba(126, 182, 227, 0.1), rgba(126, 182, 227, 0));
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    letter-spacing: 0.5px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 分割线样式 */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, rgba(126, 182, 227, 0.1), rgba(126, 182, 227, 0.5), rgba(126, 182, 227, 0.1));
+    margin: 25px 0;
+}
+
+/* 侧边栏样式 */
+.sidebar .sidebar-content {
+    background-color: #f0f5fa;
+    border-right: 1px solid #e6eef7;
+    padding: 20px 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border-radius: 0 10px 10px 0;
+}
+
+.sidebar .sidebar-content h3 {
+    color: #4a5568;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6eef7;
+}
+
+/* 按钮样式 */
+button, .stButton>button, .stDownloadButton>button {
+    background: linear-gradient(135deg, #7eb6e3 0%, #6ba5d8 100%) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    border: none !important;
+    padding: 12px 18px !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 8px rgba(107, 165, 216, 0.25) !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    font-size: 0.9em !important;
+}
+
+/* 特定按钮缩小样式 */
+#root > div:nth-child(1) > div:nth-child(1) > div > div > div > section:nth-child(2) > div:nth-child(3) > div > div > div > div > div > div > div > div > div:nth-child(3) > button {
+    transform: scale(0.85) !important;
+    padding: 8px 12px !important;
+    font-size: 0.9em !important;
+}
+
+button:hover, .stButton>button:hover, .stDownloadButton>button:hover {
+    background: linear-gradient(135deg, #6ba5d8 0%, #5a94c7 100%) !important;
+    box-shadow: 0 4px 8px rgba(107, 165, 216, 0.3) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 知识库按钮居中显示 */
+.row-widget.stButton, .row-widget.stDownloadButton {
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* 输入框样式 */
+.stTextInput>div>div>input, .stNumberInput>div>div>input {
+    border-radius: 8px !important;
+    border: 1px solid #e6eef7 !important;
+    padding: 10px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+    background-color: #ffffff !important;
+}
+
+.stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
+    border-color: #7eb6e3 !important;
+    box-shadow: 0 0 0 2px rgba(126, 182, 227, 0.15) !important;
+}
+
+/* 聊天消息样式 */
+.stChatMessage {
+    margin-bottom: 18px !important;
+    padding: 15px !important;
+    border-radius: 16px !important;
+    max-width: 85% !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.stChatMessage:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* 用户消息样式 */
+.stChatMessage[data-testid="stChatMessage-user"] {
+    background: linear-gradient(135deg, #e8f1fa 0%, #d9e8f6 100%) !important;
+    border-top-right-radius: 4px !important;
+    margin-left: auto !important;
+    margin-right: 10px !important;
+    border-left: 1px solid rgba(126, 182, 227, 0.3) !important;
+}
+
+/* AI消息样式 */
+.stChatMessage[data-testid="stChatMessage-assistant"] {
+    background: linear-gradient(135deg, #f5f7fa 0%, #edf2f7 100%) !important;
+    border-top-left-radius: 4px !important;
+    margin-right: auto !important;
+    margin-left: 10px !important;
+    border-right: 1px solid rgba(149, 213, 178, 0.3) !important;
+}
+
+/* 头像样式 */
+.stChatMessage .avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    color: white !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.stChatMessage .avatar:hover {
+    transform: scale(1.05) !important;
+}
+
+.stChatMessage[data-testid="stChatMessage-user"] .avatar {
+    background: linear-gradient(135deg, #7eb6e3 0%, #6ba5d8 100%) !important;
+}
+
+.stChatMessage[data-testid="stChatMessage-assistant"] .avatar {
+    background: linear-gradient(135deg, #95d5b2 0%, #7bc8a4 100%) !important;
+}
+
+/* 聊天输入框样式 */
+.stChatInput {
+    border-radius: 20px !important;
+    border: 1px solid #e6eef7 !important;
+    padding: 12px 18px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03) !important;
+    transition: all 0.3s ease !important;
+    background-color: #ffffff !important;
+}
+
+.stChatInput:focus {
+    border-color: #7eb6e3 !important;
+    box-shadow: 0 0 0 2px rgba(126, 182, 227, 0.15) !important;
+}
+
+/* 错误和成功消息样式 */
+.stAlert {
+    border-radius: 8px !important;
+    padding: 12px 15px !important;
+    margin: 12px 0 !important;
+    border-left: 4px solid !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03) !important;
+}
+
+.stAlert[data-baseweb="notification"][kind="error"] {
+    background-color: #fdf2f2 !important;
+    border-left-color: #f8a4a4 !important;
+}
+
+.stAlert[data-baseweb="notification"][kind="success"] {
+    background-color: #f0fff4 !important;
+    border-left-color: #9ae6b4 !important;
+}
+
+.stAlert[data-baseweb="notification"][kind="warning"] {
+    background-color: #fffaf0 !important;
+    border-left-color: #fbd38d !important;
+}
+
+/* 加载动画样式 */
+.stSpinner {
+    border-color: #7eb6e3 !important;
+    animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 添加卡片样式 */
+.element-container > .stMarkdown > div > p {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 美化警告和信息框 */
+.stAlert {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 美化选择框 */
+.stSelectbox > div > div {
+    border-radius: 10px !important;
+    border: 1px solid #e6eef7 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03) !important;
+}
+
+.stSelectbox > div > div:hover {
+    border-color: #7eb6e3 !important;
+    box-shadow: 0 0 0 2px rgba(126, 182, 227, 0.15) !important;
+}
+
+/* 美化滑块 */
+.stSlider > div > div > div > div {
+    background-color: #7eb6e3 !important;
+}
+
+/* 美化复选框 */
+.stCheckbox > div > div > div > div {
+    border-radius: 4px !important;
+    border: 1px solid #e6eef7 !important;
+}
+
+.stCheckbox > div > div > div > div:hover {
+    border-color: #7eb6e3 !important;
+}
+
+/* 文件上传区域样式 */
+.stFileUploader>div>button {
+    background-color: #f8fafc !important;
+    border: 2px dashed #d1e0f0 !important;
+    border-radius: 12px !important;
+    padding: 25px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.stFileUploader>div>button:hover {
+    background-color: #f0f5fa !important;
+    border-color: #7eb6e3 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(126, 182, 227, 0.15) !important;
+}
+
+.stFileUploader>div>button::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -10px !important;
+    left: -10px !important;
+    right: -10px !important;
+    bottom: -10px !important;
+    background: linear-gradient(135deg, rgba(126, 182, 227, 0.1) 0%, rgba(126, 182, 227, 0) 50%, rgba(126, 182, 227, 0.1) 100%) !important;
+    z-index: -1 !important;
+    transform: rotate(45deg) !important;
+    transition: all 0.5s ease !important;
+}
+
+.stFileUploader>div>button:hover::before {
+    transform: rotate(90deg) !important;
+}
+
+/* 选择框样式 */
+.stSelectbox>div>div {
+    border-radius: 8px !important;
+    border: 1px solid #e6eef7 !important;
+    background-color: #ffffff !important;
+}
+
+.stSelectbox>div>div:focus {
+    border-color: #7eb6e3 !important;
+    box-shadow: 0 0 0 2px rgba(126, 182, 227, 0.15) !important;
+}
+
+/* 单选按钮样式 */
+.stRadio>div {
+    padding: 12px !important;
+    background-color: #f8fafc !important;
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* 页面容器样式 */
+.main .block-container {
+    padding: 2rem 1rem !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* 卡片效果 */
+.element-container {
+    transition: all 0.3s ease;
+}
+
+.element-container:hover {
+    transform: translateY(-2px);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .main .block-container {
+        padding: 1rem !important;
+        border-radius: 8px !important;
+    }
+    
+    .stChatMessage {
+        max-width: 95% !important;
+    }
+}
