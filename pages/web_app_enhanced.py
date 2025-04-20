@@ -151,6 +151,17 @@ except UnicodeDecodeError:
     with open('e:/RAG实战/pages/style_enhanced.css', encoding='latin-1') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+
+# 加载主题切换JavaScript
+try:
+    with open('e:/RAG实战/pages/theme_switcher.js', encoding='utf-8') as f:
+        js_content = f.read()
+        st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
+except Exception as e:
+    st.error(f'加载主题切换脚本失败: {e}')
+
+# 添加卡片容器类
+st.markdown('<div class="card-container">', unsafe_allow_html=True)
     
 st.markdown("<h1 class='main-title'>增强型RAG文档检索系统 <span class='emoji-title'>🤖</span></h1>", unsafe_allow_html=True)
 st.markdown('<div class="gradient-line"></div>', unsafe_allow_html=True)
@@ -178,7 +189,7 @@ if st.session_state.filenames == [] and not st.session_state.use_web_search:
     st.warning("您还没有添加知识库或启用网络搜索，模型的回答将基于通用知识。")
 
 # 展示聊天记录
-st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
+st.markdown("<div class='chat-container glass-effect'>", unsafe_allow_html=True)
 if st.session_state.messages:
     for message in st.session_state.messages:
         if message["role"] == "user":
@@ -190,6 +201,9 @@ if st.session_state.messages:
 else:
     st.markdown("<div class='empty-chat-message'>请在下方输入您的问题开始对话...</div>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
+
+# 关闭卡片容器
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ---------------------侧边栏设置-----------------------
@@ -354,6 +368,9 @@ with col4:
                                          mime='text/csv',  # 文件类型
                                          use_container_width=True)
 st.markdown("</div>", unsafe_allow_html=True)
+
+# 关闭卡片容器
+st.markdown('</div>', unsafe_allow_html=True)
 if add:
     with st.spinner("知识库生成中..."):
         # 清空现有知识库（如果选择了仅使用当前知识库）

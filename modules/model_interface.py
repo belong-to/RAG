@@ -116,3 +116,58 @@ def get_available_models():
     :return: 模型名称列表
     """
     return ['DeepSeek', '阿里通义千问', '百度文心']
+
+def get_realtime_info(query):
+    """
+    获取实时信息，如日期、时间等
+    :param query: 用户查询
+    :return: 实时信息回答
+    """
+    import datetime
+    import re
+    import calendar
+    
+    # 获取当前日期时间
+    now = datetime.datetime.now()
+    weekday_names = ['一', '二', '三', '四', '五', '六', '日']
+    weekday_name = weekday_names[now.weekday()]
+    
+    # 日期相关问题模式
+    date_patterns = [
+        r'今天(是?)(几号|什么日期|日期)',
+        r'(现在|当前)(是?)(几号|什么日期|日期)',
+        r'今天(是?)(星期几|周几|礼拜几)',
+        r'(现在|当前)(是?)(星期几|周几|礼拜几)',
+        r'(今天|现在)(是?)(哪一?年|几年)',
+        r'(今天|现在)(是?)(哪个?月|几月)'
+    ]
+    
+    # 时间相关问题模式
+    time_patterns = [
+        r'(现在|当前)(是?)(几点|什么时间|时间)',
+        r'(现在|当前)(的?)时间'
+    ]
+    
+    # 检查是否是日期相关问题
+    for pattern in date_patterns:
+        if re.search(pattern, query):
+            if '号' in query or '日期' in query:
+                return f"今天是{now.year}年{now.month}月{now.day}日"
+            elif '星期' in query or '周' in query or '礼拜' in query:
+                return f"今天是星期{weekday_name}"
+            elif '年' in query:
+                return f"现在是{now.year}年"
+            elif '月' in query:
+                return f"现在是{now.month}月"
+    
+    # 检查是否是时间相关问题
+    for pattern in time_patterns:
+        if re.search(pattern, query):
+            return f"现在的时间是{now.hour}点{now.minute}分{now.second}秒"
+    
+    # 如果是其他实时信息问题，返回完整日期时间
+    if '日期' in query and '时间' in query:
+        return f"现在是{now.year}年{now.month}月{now.day}日 {now.hour}点{now.minute}分{now.second}秒，星期{weekday_name}"
+    
+    # 不是实时信息问题
+    return None

@@ -8,6 +8,7 @@ from langchain_community.document_transformers import LongContextReorder
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from modules.search_engine import get_search_engine, format_search_results, SearchResult
 from modules.vector_store import format_docs
+from modules.model_interface import get_realtime_info
 
 # 配置日志
 logging.basicConfig(
@@ -19,7 +20,7 @@ logger = logging.getLogger('enhanced_retrieval')
 def enhanced_retrieval(llm, query, vector_store=None, search_engine_name=None, 
                       use_web_search=False, k=3, num_web_results=5):
     """
-    增强版检索函数，结合文档检索和网络搜索
+    增强版检索函数，结合文档检索和网络搜索，并支持回答实时问题
     
     Args:
         llm: 大语言模型
@@ -33,6 +34,11 @@ def enhanced_retrieval(llm, query, vector_store=None, search_engine_name=None,
     Returns:
         str: 回答
     """
+    # 首先检查是否是实时问题（如日期、时间等）
+    realtime_answer = get_realtime_info(query)
+    if realtime_answer:
+        return realtime_answer
+        
     # 初始化上下文和来源信息
     context = ""
     sources = []

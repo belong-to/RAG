@@ -1,5 +1,29 @@
 /* 增强型RAG文档检索系统 - 增强样式表 */
 
+:root {
+    --primary-color: #38bdf8;
+    --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    --secondary-color: #818cf8;
+    --accent-color: #c084fc;
+    --text-color: #334155;
+    --bg-color: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --border-color: rgba(226, 232, 240, 0.8);
+}
+
+[data-theme="dark"] {
+    --primary-color: #0ea5e9;
+    --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    --secondary-color: #6366f1;
+    --accent-color: #a855f7;
+    --text-color: #e2e8f0;
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --border-color: rgba(51, 65, 85, 0.8);
+}
+
 /* 全局样式和动画定义 */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -27,6 +51,18 @@
     100% { background-position: 1000px 0; }
 }
 
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: all 0.3s ease;
@@ -36,65 +72,146 @@
 }
 
 body {
-    background-color: #f8fafc;
-    color: #334155;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    background-image: linear-gradient(120deg, var(--bg-color) 0%, var(--card-bg) 100%);
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* 页面加载动画 */
 .stApp {
     animation: fadeIn 0.8s ease-out;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
     min-height: 100vh;
+    position: relative;
+}
+
+.stApp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+    background-size: 300% 300%;
+    animation: gradientFlow 3s ease infinite;
+    z-index: 1000;
 }
 
 /* 主标题动画效果 */
 .main-title {
-    color: #1e293b;
+    color: var(--text-color);
     font-weight: 700;
     margin: 20px 0;
     text-align: center;
     padding: 20px;
-    background: linear-gradient(to right, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.1), rgba(56, 189, 248, 0.05));
+    background: linear-gradient(to right, rgba(var(--primary-color), 0.05), rgba(var(--primary-color), 0.1), rgba(var(--primary-color), 0.05));
     border-radius: 16px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
     letter-spacing: 0.5px;
     animation: fadeIn 1s ease-in-out;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.main-title:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px var(--shadow-color);
+}
+
+.emoji-title {
+    display: inline-block;
+    animation: floatUp 3s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+.gradient-line {
+    height: 3px;
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+    margin: 10px 0 30px 0;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* 文件上传区域动画 */
 .upload-area {
-    border: 2px dashed #cbd5e1;
+    border: 2px dashed var(--border-color);
     border-radius: 12px;
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
-    background-color: #f8fafc;
+    background-color: var(--card-bg);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .upload-area:hover {
-    border-color: #38bdf8;
-    background-color: rgba(56, 189, 248, 0.05);
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-color), 0.05);
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.upload-area::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--primary-color), 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+}
+
+.upload-area:hover::before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .upload-area.drag-over {
-    border-color: #38bdf8;
-    background-color: rgba(56, 189, 248, 0.1);
+    border-color: var(--primary-color);
+    background-color: rgba(var(--primary-color), 0.1);
     transform: scale(1.02);
+    animation: pulse 1.5s infinite;
 }
 
 /* 加载状态动画 */
 .loading-indicator {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, var(--card-bg) 25%, var(--border-color) 50%, var(--card-bg) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 8px;
     padding: 15px;
     margin: 10px 0;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-indicator::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: loading-shine 1.5s infinite;
+}
+
+@keyframes loading-shine {
+    to {
+        left: 100%;
+    }
 }
 
 /* 聊天消息动画 */
@@ -104,8 +221,24 @@ body {
     padding: 15px !important;
     border-radius: 16px !important;
     max-width: 85% !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 3px 10px var(--shadow-color) !important;
     transition: all 0.3s ease !important;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.stChatMessage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary-gradient);
+    opacity: 0.7;
 }
 
 .stChatMessage:hover {
@@ -113,16 +246,35 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
 }
 
+.chat-container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+}
+
+.empty-chat-message {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+    font-style: italic;
+    animation: pulse 2s infinite ease-in-out;
+}
+
 /* 按钮悬停效果 */
 button, .stButton>button, .stDownloadButton>button {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%) !important;
+    background: var(--primary-gradient) !important;
     color: white !important;
     border-radius: 12px !important;
     border: none !important;
     padding: 12px 20px !important;
     transition: all 0.3s ease !important;
     font-weight: 500 !important;
-    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 0 10px 15px -3px var(--shadow-color) !important;
     letter-spacing: 0.5px !important;
     text-transform: uppercase !important;
     font-size: 0.9em !important;
@@ -130,10 +282,25 @@ button, .stButton>button, .stDownloadButton>button {
     overflow: hidden;
 }
 
+button::before, .stButton>button::before, .stDownloadButton>button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
 button:hover, .stButton>button:hover, .stDownloadButton>button:hover {
     background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%) !important;
     box-shadow: 0 15px 20px -5px rgba(56, 189, 248, 0.3) !important;
     transform: translateY(-3px) !important;
+}
+
+button:hover::before, .stButton>button:hover::before, .stDownloadButton>button:hover::before {
+    left: 100%;
 }
 
 button:active, .stButton>button:active, .stDownloadButton>button:active {
@@ -145,11 +312,17 @@ button:active, .stButton>button:active, .stDownloadButton>button:active {
 .search-result {
     animation: fadeIn 0.5s ease-out;
     transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--primary-color);
+    background-color: var(--card-bg);
 }
 
 .search-result:hover {
     transform: translateX(5px);
-    background-color: rgba(56, 189, 248, 0.05);
+    background-color: rgba(var(--primary-color), 0.05);
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 /* 错误消息动画 */
@@ -159,9 +332,21 @@ button:active, .stButton>button:active, .stDownloadButton>button:active {
 }
 
 /* 输入框焦点效果 */
+.stTextInput>div>div>input, .stNumberInput>div>div>input {
+    border-radius: 10px !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
 .stTextInput>div>div>input:focus, .stNumberInput>div>div>input:focus {
     transform: translateY(-2px) !important;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.15) !important;
+    border-color: var(--primary-color) !important;
+    background-color: var(--card-bg) !important;
+    outline: none !important;
 }
 
 /* 滚动条样式 */
@@ -170,16 +355,166 @@ button:active, .stButton>button:active, .stDownloadButton>button:active {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: var(--bg-color);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #94a3b8;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+    background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+}
+
+/* 侧边栏样式优化 */
+.sidebar .sidebar-content {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* 文件上传区域美化 */
+.uploadedFile {
+    background: var(--card-bg) !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.uploadedFile:hover {
+    transform: translateX(5px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 选择框样式 */
+.stSelectbox > div > div {
+    background-color: var(--card-bg) !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stSelectbox > div > div:hover {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.1) !important;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card-bg);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg);
+}
+
+/* 卡片效果增强 */
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    transform-origin: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-gradient);
+    opacity: 0.7;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.card:hover::after {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+/* 响应式布局优化 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+    
+    .stChatMessage {
+        max-width: 95% !important;
+        padding: 10px !important;
+    }
+    
+    button, .stButton>button, .stDownloadButton>button {
+        padding: 8px 15px !important;
+        font-size: 0.8em !important;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+}
+
+/* 3D效果增强 */
+.effect-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.effect-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+}
+
+/* 玻璃态效果增强 */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .glass-effect {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 交互反馈增强 */
+.interactive-element {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.interactive-element:active {
+    transform: scale(0.95);
 }
