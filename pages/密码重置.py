@@ -73,7 +73,7 @@ if st.session_state.reset_step == 'email':
                         st.error(message)
 
     # 返回登录页面链接
-    st.markdown("[返回登录页面](/login_app)")
+    st.markdown("[返回登录页面](/登录)")
 
 elif st.session_state.reset_step == 'verify':
     # 第二步：验证码验证
@@ -148,7 +148,7 @@ elif st.session_state.reset_step == 'success':
     st.write("您的密码已成功重置，请使用新密码登录。")
     
     if st.button("返回登录页面"):
-        st.switch_page("login_app.py")
+        st.switch_page("登录.py")
 
 # 页脚
 st.markdown("---")

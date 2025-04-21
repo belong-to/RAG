@@ -19,7 +19,7 @@ except Exception as e:
 # 检查用户是否已登录
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
     st.warning("请先登录系统")
-    st.markdown("[前往登录页面](/login_app)")
+    st.markdown("[前往登录页面](/登录)")
     st.stop()
 
 # 初始化session_state
@@ -31,7 +31,7 @@ if 'countdown' not in st.session_state:
     st.session_state.countdown = 0
 if 'user_id' not in st.session_state:
     st.warning("用户ID信息缺失，请重新登录系统")
-    st.markdown("[前往登录页面](/login_app)")
+    st.markdown("[前往登录页面](/登录)")
     st.stop()
 
 # 页面标题
