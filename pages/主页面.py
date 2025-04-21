@@ -144,17 +144,20 @@ st.set_page_config(page_title='增强型RAG文档检索系统', page_icon=':robo
 
 # 加载自定义CSS
 try:
-    with open('e:/RAG实战/pages/style_enhanced.css', encoding='utf-8') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
+    with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 except UnicodeDecodeError:
-    with open('e:/RAG实战/pages/style_enhanced.css', encoding='latin-1') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
+    with open(css_path, encoding='latin-1') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 
 # 加载主题切换JavaScript
 try:
-    with open('e:/RAG实战/pages/theme_switcher.js', encoding='utf-8') as f:
+    js_path = os.path.join(os.path.dirname(__file__), 'theme_switcher.js')
+    with open(js_path, encoding='utf-8') as f:
         js_content = f.read()
         st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
 except Exception as e:

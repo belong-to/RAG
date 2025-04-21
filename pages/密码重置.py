@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import os
 from modules.user_profile import initiate_password_reset, complete_password_reset, is_strong_password
 from modules.email_verification_enhanced import has_active_code
 
@@ -8,7 +9,8 @@ st.set_page_config(page_title='RAG系统 - 密码重置', page_icon=':lock:', la
 
 # 加载自定义CSS
 try:
-    with open('e:/RAG实战/pages/style_enhanced.css', encoding='utf-8') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
+    with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 except Exception as e:

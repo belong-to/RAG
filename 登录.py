@@ -183,11 +183,13 @@ st.set_page_config(page_title='RAG系统 - 用户认证', page_icon=':lock:', la
 
 # 加载自定义CSS
 try:
-    with open('e:/RAG实战/pages/login_style.css', encoding='utf-8') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'pages', 'login_style.css')
+    with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 except UnicodeDecodeError:
-    with open('e:/RAG实战/pages/login_style.css', encoding='latin-1') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'pages', 'login_style.css')
+    with open(css_path, encoding='latin-1') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 
@@ -518,8 +520,8 @@ else:
         st.info("请点击下方按钮进入RAG系统")
         
         if st.button("进入RAG文档检索系统", use_container_width=True):
-            # 重定向到web_app.py
+            # 重定向到主页面.py
             st.markdown(f'''
-            <meta http-equiv="refresh" content="0;url=http://localhost:8501/web_app">
+            <meta http-equiv="refresh" content="0;url=http://localhost:8501/主页面">
             ''', unsafe_allow_html=True)
             st.stop()

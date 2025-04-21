@@ -139,13 +139,16 @@ def get_realtime_info(query):
         r'今天(是?)(星期几|周几|礼拜几)',
         r'(现在|当前)(是?)(星期几|周几|礼拜几)',
         r'(今天|现在)(是?)(哪一?年|几年)',
-        r'(今天|现在)(是?)(哪个?月|几月)'
+        r'(今天|现在)(是?)(哪个?月|几月)',
+        r'(今天|现在|当前)(是?)(什么时候|哪天)',
+        r'(星期几|周几|礼拜几)'
     ]
     
     # 时间相关问题模式
     time_patterns = [
         r'(现在|当前)(是?)(几点|什么时间|时间)',
-        r'(现在|当前)(的?)时间'
+        r'(现在|当前)(的?)时间',
+        r'几点了'
     ]
     
     # 检查是否是日期相关问题
@@ -159,6 +162,8 @@ def get_realtime_info(query):
                 return f"现在是{now.year}年"
             elif '月' in query:
                 return f"现在是{now.month}月"
+            elif '什么时候' in query or '哪天' in query:
+                return f"今天是{now.year}年{now.month}月{now.day}日，星期{weekday_name}"
     
     # 检查是否是时间相关问题
     for pattern in time_patterns:
@@ -168,6 +173,20 @@ def get_realtime_info(query):
     # 如果是其他实时信息问题，返回完整日期时间
     if '日期' in query and '时间' in query:
         return f"现在是{now.year}年{now.month}月{now.day}日 {now.hour}点{now.minute}分{now.second}秒，星期{weekday_name}"
+    
+    # 简单的问题匹配
+    simple_patterns = {
+        '今天': f"今天是{now.year}年{now.month}月{now.day}日，星期{weekday_name}",
+        '现在': f"现在是{now.year}年{now.month}月{now.day}日 {now.hour}点{now.minute}分{now.second}秒，星期{weekday_name}",
+        '日期': f"今天是{now.year}年{now.month}月{now.day}日",
+        '时间': f"现在的时间是{now.hour}点{now.minute}分{now.second}秒",
+        '星期': f"今天是星期{weekday_name}",
+        '周几': f"今天是星期{weekday_name}"
+    }
+    
+    for key, response in simple_patterns.items():
+        if key in query:
+            return response
     
     # 不是实时信息问题
     return None

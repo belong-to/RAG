@@ -26,13 +26,13 @@
   <rect x="50" y="100" width="900" height="100" class="ui-module" />
   <text x="500" y="130" class="text" style="font-weight: bold;">用户界面层</text>
   <rect x="100" y="150" width="180" height="30" class="ui-module" />
-  <text x="190" y="170" class="text">登录页面 (login_app.py)</text>
+  <text x="190" y="170" class="text">登录页面 (登录.py)</text>
   <rect x="320" y="150" width="180" height="30" class="ui-module" />
-  <text x="410" y="170" class="text">主应用页面 (web_app.py)</text>
+  <text x="410" y="170" class="text">主应用页面 (主页面.py)</text>
   <rect x="540" y="150" width="180" height="30" class="ui-module" />
-  <text x="630" y="170" class="text">管理员页面 (admin_dashboard.py)</text>
+  <text x="630" y="170" class="text">管理员页面 (管理员面板.py)</text>
   <rect x="760" y="150" width="140" height="30" class="ui-module" />
-  <text x="830" y="170" class="text">用户资料 (user_profile_page.py)</text>
+  <text x="830" y="170" class="text">用户资料 (个人资料.py)</text>
   
   <!-- 认证与用户管理层 -->
   <rect x="50" y="230" width="280" height="150" class="auth-module" />

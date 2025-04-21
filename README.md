@@ -20,22 +20,31 @@
   - MySQL：用户数据和文档元数据
   - 向量数据库：文档向量存储
 - **核心依赖**：
-  - 文档处理：document_processor.py
-  - 用户管理：user_manager.py
-  - 向量存储：vector_store.py
-  - 认证服务：auth.py
+  - 文档处理：document_processor.py, document_processor_async.py
+  - 用户管理：user_manager.py, user_manager_enhanced.py, user_profile.py
+  - 向量存储：vector_store.py, vector_store_enhanced.py
+  - 认证服务：auth.py, email_verification.py, email_verification_enhanced.py
+  - 聊天管理：chat_manager.py
+  - 检索增强：enhanced_retrieval.py
 
 ## 目录结构
 ```
 ├── modules/                 # 核心功能模块
 │   ├── auth/               # 认证相关模块
 │   ├── document/           # 文档处理模块
-│   └── vector_store.py     # 向量存储实现
+│   ├── vector_store.py     # 向量存储实现
+│   ├── document_processor.py # 文档处理实现
+│   ├── user_manager.py     # 用户管理实现
+│   ├── chat_manager.py     # 聊天管理实现
+│   └── enhanced_retrieval.py # 增强检索实现
 ├── pages/                  # Web页面
-│   ├── web_app.py         # 主应用页面
-│   ├── admin_dashboard.py # 管理面板
-│   └── style.css          # 样式文件
-└── uploads/               # 文档上传目录
+│   ├── 主页面.py           # 主应用页面
+│   ├── 管理员面板.py       # 管理面板
+│   ├── 个人资料.py         # 用户资料页面
+│   ├── 密码重置.py         # 密码重置页面
+│   └── style.css           # 样式文件
+├── 登录.py                 # 登录入口
+└── uploads/                # 文档上传目录
 ```
 
 ## 功能特性
@@ -44,6 +53,9 @@
 - 账户管理：注册、登录、密码重置
 - 文档管理：上传、查看、删除
 - 智能问答：基于文档内容的问答交互
+- 个人资料：查看和编辑个人信息
+- 主题切换：支持明暗主题切换
+- 实时问答：流式响应的智能对话体验
 
 ### 管理功能
 - 用户管理：查看、编辑用户信息
@@ -54,6 +66,8 @@
 - 响应式设计：适配不同设备
 - 动画效果：流畅的交互体验
 - 拖拽上传：便捷的文件处理
+- 主题切换：支持明暗主题模式
+- 个性化设置：用户界面偏好保存
 
 ## 部署说明
 
@@ -67,7 +81,7 @@
 2. 安装依赖：`pip install -r requirements.txt`
 3. 配置数据库连接
 4. 运行初始化脚本：`python check_db_structure.py`
-5. 启动应用：`streamlit run pages/web_app.py`
+5. 启动应用：`streamlit run 登录.py`
 
 ## 使用指南
 
@@ -84,13 +98,16 @@
 4. 监控系统状态
 
 ## 安全特性
-- 密码加密存储
-- 邮箱验证
-- 文件类型限制
-- 访问权限控制
+- 密码加密存储：使用安全哈希算法
+- 邮箱验证：email_verification_enhanced.py
+- 文件类型限制：file_manager.py
+- 访问权限控制：基于角色的权限系统
+- 会话管理：安全的用户会话控制
+- 输入验证：防止恶意输入和注入攻击
 
 ## 性能优化
-- 异步文档处理
-- 向量检索优化
-- 页面加载优化
-- 数据库连接池
+- 异步文档处理：document_processor_async.py
+- 向量检索优化：enhanced_retrieval.py
+- 页面加载优化：animations.js和animations.css
+- 数据库连接池：db_pool.py
+- 流式响应：实时问答体验

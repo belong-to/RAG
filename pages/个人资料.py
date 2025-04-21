@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import os
 from modules.user_profile import get_user_profile, update_user_profile, verify_current_password, update_password, is_strong_password, check_email_verification_status, send_verification_reminder
 from modules.email_verification_enhanced import has_active_code, verify_code
 
@@ -8,7 +9,8 @@ st.set_page_config(page_title='RAG系统 - 个人资料', page_icon=':bust_in_si
 
 # 加载自定义CSS
 try:
-    with open('e:/RAG实战/pages/style_enhanced.css', encoding='utf-8') as f:
+    css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
+    with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 except Exception as e:
@@ -191,7 +193,7 @@ elif selected_tab == "邮箱验证":
 # 返回按钮
 st.markdown("---")
 if st.button("返回主页"):
-    st.switch_page("pages/web_app.py")
+    st.switch_page("pages/主页面.py")
 
 # 页脚
 st.markdown("---")
