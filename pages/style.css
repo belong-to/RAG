@@ -11,8 +11,29 @@ body {
 
 /* 页面背景渐变 */
 .stApp {
-    background: linear-gradient(135deg, #f9fafc 0%, #f0f5fa 100%);
+    background: linear-gradient(135deg, #f9fafc 0%, #f0f5fa 50%, #e8f1fa 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     min-height: 100vh;
+    position: relative;
+}
+
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(126, 182, 227, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 165, 216, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 /* 标题样式 */
@@ -57,17 +78,31 @@ hr {
 
 /* 按钮样式 */
 button, .stButton>button, .stDownloadButton>button {
-    background: linear-gradient(135deg, #7eb6e3 0%, #6ba5d8 100%) !important;
+    background: linear-gradient(135deg, #7eb6e3 0%, #6ba5d8 50%, #5a94c7 100%) !important;
     color: white !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
     border: none !important;
-    padding: 12px 18px !important;
-    transition: all 0.3s ease !important;
-    font-weight: 500 !important;
-    box-shadow: 0 4px 8px rgba(107, 165, 216, 0.25) !important;
-    letter-spacing: 0.5px !important;
+    padding: 14px 24px !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 6px 20px rgba(107, 165, 216, 0.3), 0 2px 6px rgba(107, 165, 216, 0.15) !important;
+    letter-spacing: 0.8px !important;
     text-transform: uppercase !important;
     font-size: 0.9em !important;
+    position: relative !important;
+    overflow: hidden !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+button::before, .stButton>button::before, .stDownloadButton>button::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: left 0.5s !important;
 }
 
 /* 特定按钮缩小样式 */
@@ -78,9 +113,18 @@ button, .stButton>button, .stDownloadButton>button {
 }
 
 button:hover, .stButton>button:hover, .stDownloadButton>button:hover {
-    background: linear-gradient(135deg, #6ba5d8 0%, #5a94c7 100%) !important;
-    box-shadow: 0 4px 8px rgba(107, 165, 216, 0.3) !important;
-    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, #6ba5d8 0%, #5a94c7 50%, #4983b6 100%) !important;
+    box-shadow: 0 8px 25px rgba(107, 165, 216, 0.4), 0 4px 12px rgba(107, 165, 216, 0.25) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+}
+
+button:hover::before, .stButton>button:hover::before, .stDownloadButton>button:hover::before {
+    left: 100% !important;
+}
+
+button:active, .stButton>button:active, .stDownloadButton>button:active {
+    transform: translateY(-1px) scale(0.98) !important;
+    transition: all 0.1s ease !important;
 }
 
 /* 知识库按钮居中显示 */
@@ -106,34 +150,70 @@ button:hover, .stButton>button:hover, .stDownloadButton>button:hover {
 
 /* 聊天消息样式 */
 .stChatMessage {
-    margin-bottom: 18px !important;
-    padding: 15px !important;
-    border-radius: 16px !important;
+    margin-bottom: 20px !important;
+    padding: 18px 22px !important;
+    border-radius: 20px !important;
     max-width: 85% !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
-    transition: transform 0.2s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    position: relative !important;
+    animation: fadeInMessage 0.5s ease-out !important;
 }
 
 .stChatMessage:hover {
-    transform: translateY(-2px) !important;
+    transform: translateY(-3px) scale(1.01) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+@keyframes fadeInMessage {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* 用户消息样式 */
 .stChatMessage[data-testid="stChatMessage-user"] {
-    background: linear-gradient(135deg, #e8f1fa 0%, #d9e8f6 100%) !important;
-    border-top-right-radius: 4px !important;
+    background: linear-gradient(135deg, #e8f1fa 0%, #d9e8f6 50%, #cce0f2 100%) !important;
+    border-top-right-radius: 8px !important;
     margin-left: auto !important;
-    margin-right: 10px !important;
-    border-left: 1px solid rgba(126, 182, 227, 0.3) !important;
+    margin-right: 15px !important;
+    border-left: 3px solid rgba(126, 182, 227, 0.6) !important;
+    box-shadow: 0 4px 15px rgba(126, 182, 227, 0.15), 0 2px 6px rgba(126, 182, 227, 0.1) !important;
+}
+
+.stChatMessage[data-testid="stChatMessage-user"]::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -1px !important;
+    left: -1px !important;
+    right: -1px !important;
+    bottom: -1px !important;
+    background: linear-gradient(135deg, rgba(126, 182, 227, 0.3), rgba(107, 165, 216, 0.2)) !important;
+    border-radius: 20px !important;
+    z-index: -1 !important;
 }
 
 /* AI消息样式 */
 .stChatMessage[data-testid="stChatMessage-assistant"] {
-    background: linear-gradient(135deg, #f5f7fa 0%, #edf2f7 100%) !important;
-    border-top-left-radius: 4px !important;
+    background: linear-gradient(135deg, #f5f7fa 0%, #edf2f7 50%, #e5ebf0 100%) !important;
+    border-top-left-radius: 8px !important;
     margin-right: auto !important;
-    margin-left: 10px !important;
-    border-right: 1px solid rgba(149, 213, 178, 0.3) !important;
+    margin-left: 15px !important;
+    border-right: 3px solid rgba(149, 213, 178, 0.6) !important;
+    box-shadow: 0 4px 15px rgba(149, 213, 178, 0.15), 0 2px 6px rgba(149, 213, 178, 0.1) !important;
+}
+
+.stChatMessage[data-testid="stChatMessage-assistant"]::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -1px !important;
+    left: -1px !important;
+    right: -1px !important;
+    bottom: -1px !important;
+    background: linear-gradient(135deg, rgba(149, 213, 178, 0.3), rgba(134, 198, 165, 0.2)) !important;
+    border-radius: 20px !important;
+    z-index: -1 !important;
 }
 
 /* 头像样式 */

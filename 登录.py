@@ -183,15 +183,58 @@ st.set_page_config(page_title='RAG系统 - 用户认证', page_icon=':lock:', la
 
 # 加载自定义CSS
 try:
+    # 加载登录页面样式
     css_path = os.path.join(os.path.dirname(__file__), 'pages', 'login_style.css')
     with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+    
+    # 加载增强UI样式
+    enhanced_css_path = os.path.join(os.path.dirname(__file__), 'pages', 'enhanced_ui.css')
+    with open(enhanced_css_path, encoding='utf-8') as f:
+        enhanced_css_content = f.read()
+        st.markdown(f'<style>{enhanced_css_content}</style>', unsafe_allow_html=True)
+    
+    # 加载动画样式
+    animations_css_path = os.path.join(os.path.dirname(__file__), 'pages', 'animations.css')
+    with open(animations_css_path, encoding='utf-8') as f:
+        animations_css_content = f.read()
+        st.markdown(f'<style>{animations_css_content}</style>', unsafe_allow_html=True)
+    
+    # 加载基础样式
+    style_css_path = os.path.join(os.path.dirname(__file__), 'pages', 'style.css')
+    with open(style_css_path, encoding='utf-8') as f:
+        style_css_content = f.read()
+        st.markdown(f'<style>{style_css_content}</style>', unsafe_allow_html=True)
 except UnicodeDecodeError:
     css_path = os.path.join(os.path.dirname(__file__), 'pages', 'login_style.css')
     with open(css_path, encoding='latin-1') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+except Exception as e:
+    st.error(f'加载CSS样式失败: {e}')
+
+# 加载JavaScript文件
+try:
+    # 加载主题切换JavaScript
+    js_path = os.path.join(os.path.dirname(__file__), 'pages', 'theme_switcher.js')
+    with open(js_path, encoding='utf-8') as f:
+        js_content = f.read()
+        st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
+    
+    # 加载动画JavaScript
+    animations_js_path = os.path.join(os.path.dirname(__file__), 'pages', 'animations.js')
+    with open(animations_js_path, encoding='utf-8') as f:
+        animations_js_content = f.read()
+        st.markdown(f'<script>{animations_js_content}</script>', unsafe_allow_html=True)
+    
+    # 加载UI增强JavaScript
+    ui_enhancer_js_path = os.path.join(os.path.dirname(__file__), 'pages', 'ui_enhancer.js')
+    with open(ui_enhancer_js_path, encoding='utf-8') as f:
+        ui_enhancer_js_content = f.read()
+        st.markdown(f'<script>{ui_enhancer_js_content}</script>', unsafe_allow_html=True)
+except Exception as e:
+    st.error(f'加载JavaScript脚本失败: {e}')
 
 # 初始化session_state
 if 'logged_in' not in st.session_state:
@@ -244,8 +287,9 @@ if not st.session_state.logged_in:
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             with st.container():
-                st.markdown("<div class='auth-card'>", unsafe_allow_html=True)
-                st.markdown("<h2 class='auth-title'>用户登录</h2>", unsafe_allow_html=True)
+                # st.markdown("<div class='auth-card'>", unsafe_allow_html=True)
+                st.markdown("<h2 class='auth-title'>🌟 欢迎回来</h2>", unsafe_allow_html=True)
+                st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 32px; font-size: 16px;'>登录您的账户，开始智能检索之旅</p>", unsafe_allow_html=True)
                 
                 with st.form("login_form", clear_on_submit=False):
                     st.markdown("<div class='auth-form'>", unsafe_allow_html=True)
@@ -253,48 +297,66 @@ if not st.session_state.logged_in:
                     # 用户名输入框
                     st.markdown("<div class='auth-input-container'>", unsafe_allow_html=True)
                     st.markdown("<i class='auth-input-icon'>👤</i>", unsafe_allow_html=True)
-                    username = st.text_input("用户名", placeholder="请输入您的用户名")
+                    username = st.text_input("用户名", placeholder="请输入您的用户名", label_visibility="collapsed")
                     st.markdown("</div>", unsafe_allow_html=True)
                     
                     # 密码输入框
                     st.markdown("<div class='auth-input-container'>", unsafe_allow_html=True)
                     st.markdown("<i class='auth-input-icon'>🔒</i>", unsafe_allow_html=True)
-                    password = st.text_input("密码", type="password", placeholder="请输入您的密码")
+                    password = st.text_input("密码", type="password", placeholder="请输入您的密码", label_visibility="collapsed")
                     st.markdown("</div>", unsafe_allow_html=True)
                     
-                    submit = st.form_submit_button("登 录")
+                    # 记住我选项
+                    st.markdown("<div style='margin: 16px 0; display: flex; justify-content: space-between; align-items: center;'>", unsafe_allow_html=True)
+                    remember_me = st.checkbox("记住我", key="remember_login")
+                    st.markdown("<a href='#' style='color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500;'>忘记密码？</a>", unsafe_allow_html=True)
+                    st.markdown("</div>", unsafe_allow_html=True)
+                    
+                    submit = st.form_submit_button("🚀 立即登录")
                     st.markdown("</div>", unsafe_allow_html=True)
                     
                     if submit:
                         if not username or not password:
-                            st.markdown("<div class='auth-message error'>请填写所有字段</div>", unsafe_allow_html=True)
+                            st.markdown("<div class='auth-message error'>⚠️ 请填写所有字段</div>", unsafe_allow_html=True)
                         else:
-                            success, message, user_info = login_user(username, password)
-                            if success:
-                                st.session_state.logged_in = True
-                                st.session_state.username = username
-                                st.session_state.user_id = user_info['id']  # 添加用户ID到session_state
-                                st.session_state.page = "rag"
-                                st.markdown(f"<div class='auth-message success'>{message}</div>", unsafe_allow_html=True)
-                                st.rerun()
-                            else:
-                                st.markdown(f"<div class='auth-message error'>{message}</div>", unsafe_allow_html=True)
+                            # 添加登录加载状态
+                            with st.spinner('🔐 正在验证登录信息...'):
+                                success, message, user_info = login_user(username, password)
+                                if success:
+                                    st.session_state.logged_in = True
+                                    st.session_state.username = username
+                                    st.session_state.user_id = user_info['id']  # 添加用户ID到session_state
+                                    st.session_state.page = "rag"
+                                    st.markdown("<div class='auth-message success'>🎉 登录成功！正在跳转...</div>", unsafe_allow_html=True)
+                                    st.balloons()  # 添加庆祝动画
+                                    st.rerun()
+                                else:
+                                    st.markdown(f"<div class='auth-message error'>❌ {message}</div>", unsafe_allow_html=True)
                 
-                st.markdown("<div class='auth-divider'>或</div>", unsafe_allow_html=True)
+                # 分隔线和注册链接
+                # st.markdown("<div class='auth-divider'><span>或</span></div>", unsafe_allow_html=True)
                 
-                st.markdown("<div class='auth-links'>还没有账号？ <a href='#' id='register-link'>创建新账号</a></div>", unsafe_allow_html=True)
+                # st.markdown("<div class='auth-links'>还没有账号？ <a href='#' id='register-link'>✨ 创建新账号</a></div>", unsafe_allow_html=True)
                 
                 # JavaScript代码处理链接点击
                 st.markdown("""
                 <script>
-                document.getElementById('register-link').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // 使用Streamlit的API触发按钮点击
-                    document.querySelector('button[kind="secondary"]').click();
-                });
+                setTimeout(function() {
+                    const registerLink = document.getElementById('register-link');
+                    if (registerLink) {
+                        registerLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const hiddenButton = document.querySelector('button[data-testid="baseButton-secondary"]');
+                            if (hiddenButton) {
+                                hiddenButton.click();
+                            }
+                        });
+                    }
+                }, 100);
                 </script>
                 """, unsafe_allow_html=True)
                 
+                # 关闭auth-card容器
                 st.markdown("</div>", unsafe_allow_html=True)
                 
                 # 隐藏按钮，用于JavaScript触发

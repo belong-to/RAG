@@ -34,7 +34,19 @@ def enhanced_retrieval(llm, query, vector_store=None, search_engine_name=None,
     Returns:
         str: 回答
     """
-    # 首先检查是否是实时问题（如日期、时间等）
+    # 首先检查是否是身份相关问题
+    identity_keywords = [
+        "你是谁", "你是什么", "你的身份", "你的名字", "你叫什么",
+        "谁开发的", "谁创造的", "谁制作的", "谁设计的", "开发者", "创建者",
+        "什么系统", "什么平台", "什么软件", "什么应用", "什么程序",
+        "你的开发团队", "你的制作团队", "你的创作者", "你的作者"
+    ]
+    
+    query_lower = query.lower().strip()
+    if any(keyword in query_lower for keyword in identity_keywords):
+        return "我是由青青草原小分队开发的RAG检索系统，专门用于文档检索和智能问答。我可以帮助您从知识库中检索信息，并结合网络搜索为您提供准确的答案。"
+    
+    # 检查是否是实时问题（如日期、时间等）
     realtime_answer = get_realtime_info(query)
     if realtime_answer:
         return realtime_answer

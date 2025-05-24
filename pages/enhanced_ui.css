@@ -1,0 +1,311 @@
+/* 增强UI样式 - 现代化美化效果 */
+
+/* 全局变量定义 */
+:root {
+    --primary-gradient: linear-gradient(135deg, #7eb6e3 0%, #6ba5d8 50%, #5a94c7 100%);
+    --secondary-gradient: linear-gradient(135deg, #e8f1fa 0%, #d9e8f6 50%, #cce0f2 100%);
+    --shadow-light: 0 4px 15px rgba(126, 182, 227, 0.15);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.15);
+    --border-radius: 16px;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 全局美化效果 */
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+/* 页面容器增强 */
+.stApp {
+    background: linear-gradient(135deg, #f9fafc 0%, #f0f5fa 25%, #e8f1fa 50%, #f0f5fa 75%, #f9fafc 100%);
+    background-size: 400% 400%;
+    animation: backgroundFlow 20s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(126, 182, 227, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(107, 165, 216, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(90, 148, 199, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes backgroundFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* 增强的卡片效果 */
+.enhanced-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium), 0 2px 8px rgba(126, 182, 227, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.enhanced-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.enhanced-card:hover::before {
+    left: 100%;
+}
+
+.enhanced-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-heavy), 0 4px 15px rgba(126, 182, 227, 0.2);
+}
+
+/* 增强的按钮效果 */
+.enhanced-button {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-light), 0 2px 8px rgba(126, 182, 227, 0.2);
+}
+
+.enhanced-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.enhanced-button:hover::before {
+    left: 100%;
+}
+
+.enhanced-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(126, 182, 227, 0.4), 0 4px 15px rgba(126, 182, 227, 0.25);
+}
+
+.enhanced-button:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s ease;
+}
+
+/* 增强的输入框效果 */
+.enhanced-input {
+    border: 2px solid rgba(126, 182, 227, 0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.enhanced-input:focus {
+    outline: none;
+    border-color: #7eb6e3;
+    box-shadow: 0 0 0 4px rgba(126, 182, 227, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* 增强的消息气泡 */
+.enhanced-message {
+    border-radius: 20px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    max-width: 80%;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: messageSlideIn 0.5s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.enhanced-message.user {
+    background: var(--secondary-gradient);
+    margin-left: auto;
+    border-left: 4px solid #7eb6e3;
+    box-shadow: var(--shadow-light);
+}
+
+.enhanced-message.assistant {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    margin-right: auto;
+    border-right: 4px solid #10b981;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+}
+
+/* 增强的加载动画 */
+.enhanced-loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(126, 182, 227, 0.3);
+    border-radius: 50%;
+    border-top-color: #7eb6e3;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 增强的进度条 */
+.enhanced-progress {
+    width: 100%;
+    height: 8px;
+    background: rgba(126, 182, 227, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.enhanced-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 4px;
+    animation: progressFlow 2s ease-in-out infinite;
+}
+
+@keyframes progressFlow {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* 增强的工具提示 */
+.enhanced-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.enhanced-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    z-index: 1000;
+}
+
+.enhanced-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 增强的标签效果 */
+.enhanced-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--secondary-gradient);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2c3e50;
+    border: 1px solid rgba(126, 182, 227, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.enhanced-tag:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-light);
+}
+
+/* 响应式设计增强 */
+@media (max-width: 768px) {
+    .enhanced-card {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .enhanced-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .enhanced-message {
+        max-width: 90%;
+        padding: 12px 16px;
+    }
+}
+
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
+        --secondary-gradient: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+    }
+    
+    .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+    }
+    
+    .enhanced-card {
+        background: rgba(30, 41, 59, 0.9);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .enhanced-input {
+        background: rgba(30, 41, 59, 0.8);
+        border-color: rgba(126, 182, 227, 0.3);
+        color: #e2e8f0;
+    }
+}

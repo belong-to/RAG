@@ -144,24 +144,50 @@ st.set_page_config(page_title='增强型RAG文档检索系统', page_icon=':robo
 
 # 加载自定义CSS
 try:
+    # 加载增强样式
     css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
     with open(css_path, encoding='utf-8') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+    
+    # 加载新的增强UI样式
+    enhanced_css_path = os.path.join(os.path.dirname(__file__), 'enhanced_ui.css')
+    with open(enhanced_css_path, encoding='utf-8') as f:
+        enhanced_css_content = f.read()
+        st.markdown(f'<style>{enhanced_css_content}</style>', unsafe_allow_html=True)
+    
+    # 加载动画样式
+    animations_css_path = os.path.join(os.path.dirname(__file__), 'animations.css')
+    with open(animations_css_path, encoding='utf-8') as f:
+        animations_css_content = f.read()
+        st.markdown(f'<style>{animations_css_content}</style>', unsafe_allow_html=True)
 except UnicodeDecodeError:
     css_path = os.path.join(os.path.dirname(__file__), 'style_enhanced.css')
     with open(css_path, encoding='latin-1') as f:
         css_content = f.read()
         st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
 
-# 加载主题切换JavaScript
+# 加载JavaScript文件
 try:
+    # 加载主题切换JavaScript
     js_path = os.path.join(os.path.dirname(__file__), 'theme_switcher.js')
     with open(js_path, encoding='utf-8') as f:
         js_content = f.read()
         st.markdown(f'<script>{js_content}</script>', unsafe_allow_html=True)
+    
+    # 加载动画JavaScript
+    animations_js_path = os.path.join(os.path.dirname(__file__), 'animations.js')
+    with open(animations_js_path, encoding='utf-8') as f:
+        animations_js_content = f.read()
+        st.markdown(f'<script>{animations_js_content}</script>', unsafe_allow_html=True)
+    
+    # 加载UI增强JavaScript
+    ui_enhancer_js_path = os.path.join(os.path.dirname(__file__), 'ui_enhancer.js')
+    with open(ui_enhancer_js_path, encoding='utf-8') as f:
+        ui_enhancer_js_content = f.read()
+        st.markdown(f'<script>{ui_enhancer_js_content}</script>', unsafe_allow_html=True)
 except Exception as e:
-    st.error(f'加载主题切换脚本失败: {e}')
+    st.error(f'加载JavaScript脚本失败: {e}')
 
 # 添加卡片容器类
 st.markdown('<div class="card-container">', unsafe_allow_html=True)
