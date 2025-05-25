@@ -276,10 +276,12 @@ else:
 # 分块参数
 st.sidebar.markdown("<div class='sidebar-section'>", unsafe_allow_html=True)
 st.sidebar.markdown("<h3>⚙️ 参数设置</h3>", unsafe_allow_html=True)
-chunk_size = st.sidebar.number_input('分块大小:', min_value=100, max_value=2048, value=1024, help="较大的分块大小可能包含更多上下文，但可能降低检索精度")
+chunk_size = st.sidebar.slider('📄 分块大小', min_value=100, max_value=2048, value=1024, step=50, help="较大的分块大小可能包含更多上下文，但可能降低检索精度")
+st.sidebar.caption(f"当前分块大小: {chunk_size} 字符")
 
 # 搜索文档参数
-k = st.sidebar.number_input('搜索返回文档数', min_value=1, max_value=100, value=10, help="增加返回文档数可能提高召回率，但可能降低精确度")
+k = st.sidebar.slider('🔍 搜索返回文档数', min_value=1, max_value=100, value=10, step=1, help="增加返回文档数可能提高召回率，但可能降低精确度")
+st.sidebar.caption(f"当前返回文档数: {k} 个")
 
 # 模型选择参数
 myllm = st.sidebar.selectbox('模型选择', ['阿里通义千问', 'DeepSeek'], help="选择不同的大语言模型可能会影响回答质量和风格")
