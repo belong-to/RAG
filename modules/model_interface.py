@@ -9,8 +9,8 @@ from langchain_community.chat_models import ErnieBotChat
 from langchain_community.embeddings import ErnieEmbeddings
 
 # 默认API密钥
-DEEPSEEK_API_KEY = "sk-68b772163d5347829592346cb4d7233a"  # DeepSeek API Key
-DASHSCOPE_API_KEY = "sk-d01cdfe592b9483ab56cf94172e157db"  # 阿里通义千问 API Key
+DEEPSEEK_API_KEY = ""  # DeepSeek API Key
+DASHSCOPE_API_KEY = ""  # 阿里通义千问 API Key
 
 def load_api_keys(config_file=None):
     """
