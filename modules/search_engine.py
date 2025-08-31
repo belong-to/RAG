@@ -13,9 +13,9 @@ logging.basicConfig(
 logger = logging.getLogger('search_engine')
 
 # 默认API密钥
-SERPAPI_KEY = "b6f6c5e20e3cec2d33d297aaad32ea0b9a5708255fbc7ffa914528332b728306"  # 需要替换为实际的SERP API密钥
+SERPAPI_KEY = ""  # 需要替换为实际的SERP API密钥
 BING_API_KEY = "your_bing_api_key"  # 需要替换为实际的Bing API密钥
-GOOGLE_API_KEY = "8c0fe3d38b100440f44ad188dd858c1736401309"  # 需要替换为实际的Google API密钥
+GOOGLE_API_KEY = ""  # 需要替换为实际的Google API密钥
 
 class SearchResult:
     """搜索结果类"""
